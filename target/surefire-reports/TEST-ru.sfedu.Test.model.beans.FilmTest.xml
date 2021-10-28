@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="ru.sfedu.Test.model.beans.FilmTest" time="0.055" errors="0" skipped="0">
+<testsuite tests="15" failures="0" name="ru.sfedu.Test.model.beans.FilmTest" time="0.05" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -60,19 +60,19 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearNegative" time="0.004"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsPositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameException" time="0.002"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNamePositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearException" time="0.022"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestHashCode" time="0.004"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNamePositive" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNameNegative" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearPositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringNegative" time="0.021"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearPositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringPositive" time="0.006"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearException" time="0.022"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNamePositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestHashCode" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearPositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNamePositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameException" time="0.003"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringPositive" time="0.021"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsPositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsNegative" time="0"/>
 </testsuite>
