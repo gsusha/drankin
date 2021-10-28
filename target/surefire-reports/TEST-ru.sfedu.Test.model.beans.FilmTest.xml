@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="ru.sfedu.Test.model.beans.FilmTest" time="0.05" errors="0" skipped="0">
+<testsuite tests="15" failures="0" name="ru.sfedu.Test.model.beans.FilmTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.1.3"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -29,7 +29,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\plugins\maven\lib\maven-event-listener.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\plugins\maven\lib\maven3\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.library.path" value="C:\Users\xdyac\.jdks\openjdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;."/>
+    <property name="java.library.path" value="C:\Users\xdyac\.jdks\openjdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;."/>
     <property name="maven.conf" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2021.1.3\plugins\maven\lib\maven3/conf"/>
     <property name="jdk.debug" value="release"/>
     <property name="java.class.version" value="61.0"/>
@@ -60,19 +60,19 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestHashCode" time="0.004"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNamePositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNameNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearPositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearException" time="0.022"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestHashCode" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameException" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearPositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearPositive" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNamePositive" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameException" time="0.003"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestGetNameNegative" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testGetYearNegative" time="0"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringPositive" time="0.021"/>
-  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringNegative" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsPositive" time="0"/>
   <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestEqualsNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetYearException" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringPositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNamePositive" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testSetNameNegative" time="0"/>
+  <testcase classname="ru.sfedu.Test.model.beans.FilmTest" name="testTestToStringNegative" time="0"/>
 </testsuite>

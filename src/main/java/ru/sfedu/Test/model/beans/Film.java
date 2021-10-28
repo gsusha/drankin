@@ -8,13 +8,13 @@ import java.time.Year;
 import java.util.Objects;
 
 public class Film implements Serializable {
-    @CsvBindByName(column = "id", required = true)
+    @CsvBindByName(required = true)
     private long id;
 
-    @CsvBindByName(column = "name", required = true)
+    @CsvBindByName(required = true)
     private String name;
 
-    @CsvBindByName(column = "year", required = true)
+    @CsvBindByName(required = true)
     private int year;
 
     public Film() {}

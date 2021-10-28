@@ -15,11 +15,11 @@ public class TestClient {
     private static Logger log = LogManager.getLogger(TestClient.class);
 
     public static void main (String[] args) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
-        logBasicSystemInfo();
+        //logBasicSystemInfo();
 
-        log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
-        log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
-        log.info(ConfigurationUtil.getConfigurationEntry(Constants.PATH_TO_HOME));
+        //log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
+        //log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
+        //log.info(ConfigurationUtil.getConfigurationEntry(Constants.PATH_TO_HOME));
 
         log.error("Heyyy");
 

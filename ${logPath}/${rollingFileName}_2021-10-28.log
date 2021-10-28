@@ -1,0 +1,40 @@
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:42 - Library Path: C:\Users\xdyac\.jdks\openjdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;.
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:43 - User Home Directory: C:\Users\xdyac
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:44 - User Working Directory: C:\Users\xdyac\OneDrive\Р Р°Р±РѕС‡РёР№ СЃС‚РѕР»\Test
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:45 - Test INFO logging.
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:20 - Test
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:21 - Test
+10.22 09.31.24  INFO	ru.sfedu.Test.TestClient:22 - ru.sfedu.Test
+10.22 09.31.24 ERROR	ru.sfedu.Test.TestClient:24 - Heyyy
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:36 - Launching the application...
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:37 - Operating System: Windows 10 10.0
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:39 - JRE: 16.0.1
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:40 - Java Launched From: C:\Program Files\Java\jdk-16.0.1
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:41 - Class Path: target/Test-1.0-jar-with-dependencies.jar
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:42 - Library Path: C:\Program Files\Java\jdk-16.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;.
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:43 - User Home Directory: C:\Users\xdyac
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:44 - User Working Directory: C:\Users\xdyac\OneDrive\Рабочий стол\Test
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:45 - Test INFO logging.
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:20 - Test
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:21 - Test
+10.22 09.31.57  INFO	ru.sfedu.Test.TestClient:22 - ru.sfedu.Test
+10.22 09.31.57 ERROR	ru.sfedu.Test.TestClient:24 - Heyyy
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:36 - Launching the application...
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:37 - Operating System: Windows 10 10.0
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:39 - JRE: 16.0.1
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:40 - Java Launched From: C:\Program Files\Java\jdk-16.0.1
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:41 - Class Path: target/Test-1.0-jar-with-dependencies.jar
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:42 - Library Path: C:\Program Files\Java\jdk-16.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;.
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:43 - User Home Directory: C:\Users\xdyac
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:44 - User Working Directory: C:\Users\xdyac\OneDrive\Рабочий стол\Test
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:45 - Test INFO logging.
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:20 - Test
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:21 - Test
+10.28 23.41.59  INFO	ru.sfedu.Test.TestClient:22 - ru.sfedu.Test
+10.28 23.41.59 ERROR	ru.sfedu.Test.TestClient:24 - Heyyy
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:36 - Launching the application...
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:37 - Operating System: Windows 10 10.0
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:39 - JRE: 16.0.1
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:40 - Java Launched From: C:\Program Files\Java\jdk-16.0.1
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:41 - Class Path: target/Test-1.0-jar-with-dependencies.jar
+10.28 23.49.31  INFO	ru.sfedu.Test.TestClient:42 - Library Path: C:\Program Files\Java\jdk-16.0.1\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\nodejs\;C:\Program Files\Maven\bin;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\xdyac\AppData\Local\Programs\Python\Python310\;C:\Users\xdyac\AppData\Local\Microsoft\WindowsApps;C:\Users\xdyac\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\xdyac\AppData\Roaming\npm;.

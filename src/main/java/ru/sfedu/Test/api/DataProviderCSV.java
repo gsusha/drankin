@@ -1,9 +1,7 @@
 package ru.sfedu.Test.api;
 
 import com.opencsv.CSVWriter;
-import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.bean.*;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
@@ -13,9 +11,7 @@ import ru.sfedu.Test.model.beans.Film;
 import ru.sfedu.Test.utils.ConfigurationUtil;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class DataProviderCSV implements IDataProvider {
@@ -32,20 +28,26 @@ public class DataProviderCSV implements IDataProvider {
     }
 
     @Override
-    public Film getById(long id)  throws FileNotFoundException {
+    public Film getById(long id) throws FileNotFoundException {
         return (Film) new CsvToBeanBuilder<Film>(new FileReader(csv_file)).withType(Film.class).build().parse().get((int) id);
     }
 
     @Override
     public Result append(Film film) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
-//        List<Film> beans = new ArrayList<Film>();
-//        beans.add(film);
-
-        Writer writer = new FileWriter(csv_file);
+        File file = new File(csv_file);
+        Writer writer = new FileWriter(csv_file, true);
+        HeaderColumnNameMappingStrategy<Film> strategy = new HeaderColumnNameMappingStrategy<Film>();
+        strategy.setType(Film.class);
         StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer)
-                .withQuotechar(CSVWriter.DEFAULT_SEPARATOR).build();
-        beanToCsv.write(film);
-//        beanToCsv.write(beans);
+                .withMappingStrategy(strategy).build();
+        if (file.exists()) {
+            List<Film> films = getFilms();
+            films.add(film);
+            beanToCsv.write(films);
+        } else {
+            beanToCsv.write(film);
+        }
+        writer.close();
         return null;
     }
 
