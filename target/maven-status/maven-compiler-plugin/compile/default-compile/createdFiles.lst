@@ -1,7 +1,7 @@
+ru\sfedu\Test\api\IDataProvider.class
+ru\sfedu\Test\model\beans\Film.class
 ru\sfedu\Test\model\Result.class
 ru\sfedu\Test\utils\ConfigurationUtil.class
-ru\sfedu\Test\api\IDataProvider.class
 ru\sfedu\Test\Constants.class
 ru\sfedu\Test\TestClient.class
 ru\sfedu\Test\api\DataProviderCSV.class
-ru\sfedu\Test\model\beans\Film.class

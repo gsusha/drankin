@@ -21,11 +21,36 @@ public class TestClient {
         //log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
         //log.info(ConfigurationUtil.getConfigurationEntry(Constants.PATH_TO_HOME));
 
-        log.error("Heyyy");
+        log.error("\nHeyyy");
 
+        Film film;
+        Result result;
         DataProviderCSV dataProviderCSV = new DataProviderCSV();
-        Film film1 = new Film("It 2", 2019);
-        Result result = dataProviderCSV.append(film1);
+
+        // Вставляем
+        Film film1 = new Film("The Green Mile", 1999);
+        Film film2 = new Film("The Shawshank Redemption", 1994);
+        Film film3 = new Film("The Lord of the Rings: The Return of the King", 2003);
+        Film film4 = new Film("The Lord of the Rings: The Two Towers", 2002);
+        Film film5 = new Film("The Lord of the Rings: The Fellowship of the Ring", 2001);
+        result = dataProviderCSV.append(film1);
+        result = dataProviderCSV.append(film2);
+        result = dataProviderCSV.append(film3);
+        result = dataProviderCSV.append(film4);
+        result = dataProviderCSV.append(film5);
+        log.info(dataProviderCSV.getFilms());
+
+        // Получаем
+        film = dataProviderCSV.getById(1636669035602L);
+        log.info(film);
+
+        // Удаляем
+        result = dataProviderCSV.delete(1636669035602L);
+        log.info(dataProviderCSV.getFilms());
+
+        // Апдейтим
+        result = dataProviderCSV.update(1636669035603L, new Film("It", 2017));
+        log.info(dataProviderCSV.getFilms());
     }
 
     public TestClient() {
