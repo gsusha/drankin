@@ -1,20 +1,26 @@
 package ru.sfedu.Test.model.beans;
 
 import com.opencsv.bean.CsvBindByName;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 import java.io.Serializable;
 import java.io.IOException;
 import java.time.Year;
 import java.util.Objects;
 
+// TODO: Как нормально задать рут для списка без использования класса-обёртки?
 public class Film implements Serializable {
     @CsvBindByName(required = true)
+    @Attribute
     private long id;
 
     @CsvBindByName(required = true)
+    @Element
     private String name;
 
     @CsvBindByName(required = true)
+    @Element
     private int year;
 
     public Film() {}

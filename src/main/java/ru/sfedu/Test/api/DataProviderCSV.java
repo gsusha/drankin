@@ -1,81 +1,104 @@
 package ru.sfedu.Test.api;
 
-import com.opencsv.bean.*;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.opencsv.bean.CsvToBeanBuilder;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import ru.sfedu.Test.Constants;
-import ru.sfedu.Test.TestClient;
 import ru.sfedu.Test.model.Result;
+import ru.sfedu.Test.model.ResultState;
 import ru.sfedu.Test.model.beans.Film;
 import ru.sfedu.Test.utils.ConfigurationUtil;
 
-import java.io.*;
-
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DataProviderCSV implements IDataProvider {
-    private static final Logger log = LogManager.getLogger(TestClient.class);
-
-    String csv_file = ConfigurationUtil.getConfigurationEntry(Constants.CSV_FILE);
+    String csvFile = ConfigurationUtil.getConfigurationEntry(Constants.CSV_FILE);
 
     public DataProviderCSV() throws IOException {
 
     }
 
     @Override
-    public Result append(Film film) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
-        List<Film> films = new ArrayList<Film>();
-
-        File file = new File(csv_file);
-        if (file.exists() && file.length() > 0) {
-            films = getFilms();
+    public List<Film> getFilms() {
+        try {
+            return new CsvToBeanBuilder<Film>(new FileReader(csvFile)).withType(Film.class).build().parse();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return new ArrayList<Film>();
         }
-
-        films.add(film);
-
-        Writer writer = new FileWriter(csv_file);
-        StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
-        beanToCsv.write(films);
-        writer.close();
-
-        return null;
     }
 
     @Override
-    public List<Film> getFilms() throws IOException {
-        return new CsvToBeanBuilder<Film>(new FileReader(csv_file)).withType(Film.class).build().parse();
-    }
-
-    @Override
-    public Film getById(long id) throws IOException {
+    public Film getById(long id) {
         return getFilms().stream().filter(a -> a.getId() == id).collect(Collectors.toList()).get(0);
     }
 
     @Override
-    public Result delete(long id) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
-        List<Film> films = getFilms();
-        films.removeIf(film -> (film.getId() == id));
+    public Result<Film> append(Film film) {
+        try {
+            getById(film.getId()).getId();
+            if (film.getId() == getById(film.getId()).getId()) {
+                film = new Film(film.getName(), film.getYear());
+            }
+        } catch (Exception ignored) {};
+        List<Film> films = new ArrayList<Film>();
+        File file = new File(csvFile);
+        if (file.exists() && file.length() > 0) {
+            films = getFilms();
+        }
+        films.add(film);
 
-        Writer writer = new FileWriter(csv_file);
-        StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
-        beanToCsv.write(films);
-        writer.close();
+        try {
+            Writer writer = new FileWriter(csvFile);
+            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
+            beanToCsv.write(films);
+            writer.close();
+        } catch (Exception e) {
+            return new Result<Film>(films, ResultState.Error, e.toString());
+        }
 
-        return null;
+        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_APPEND);
     }
 
     @Override
-    public Result update(long id, Film film) throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
-        Film newFilm = getById(id);
-        delete(id);
-        newFilm.setName(film.getName());
-        newFilm.setYear(film.getYear());
-        append(newFilm);
-        return null;
+    public Result<Film> delete(long id) {
+        List<Film> films = null;
+        films = getFilms();
+        films.removeIf(film -> (film.getId() == id));
+
+        Writer writer = null;
+        try {
+            writer = new FileWriter(csvFile);
+            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
+            beanToCsv.write(films);
+            writer.close();
+        } catch (Exception e) {
+            return new Result<Film>(films, ResultState.Error, e.toString());
+        }
+
+        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_DELETE);
+    }
+
+    @Override
+    public Result<Film> update(Film film) {
+        Film newFilm;
+        try {
+            newFilm = getById(film.getId());
+            delete(film.getId());
+            newFilm.setName(film.getName());
+            newFilm.setYear(film.getYear());
+            append(newFilm);
+        } catch (Exception e) {
+            return new Result<Film>(List.of(film), ResultState.Error, e.toString());
+        }
+        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_UPDATE);
     }
 }

@@ -1,14 +1,17 @@
-11.12 02.22.45  INFO	ru.sfedu.Test.TestClient:45 - Film{id=1636669035602, name='The Shawshank Redemption', year=1994}
-11.12 02.22.45  INFO	ru.sfedu.Test.TestClient:49 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035603, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}]
-11.12 02.22.45  INFO	ru.sfedu.Test.TestClient:75 - Film{id=1636669035603, name='The Lord of the Rings: The Return of the King', year=2003}
-11.12 02.22.45  INFO	ru.sfedu.Test.TestClient:53 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035603, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636669035603, name='It', year=2017}]
-11.12 02.25.04 ERROR	ru.sfedu.Test.TestClient:24 - 
-Heyyy
-11.12 02.25.04  INFO	ru.sfedu.Test.TestClient:41 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035602, name='The Shawshank Redemption', year=1994}, Film{id=1636669035603, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}]
-11.12 02.25.04  INFO	ru.sfedu.Test.TestClient:53 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035602, name='The Shawshank Redemption', year=1994}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636669035603, name='It', year=2017}]
-11.12 02.30.44 ERROR	ru.sfedu.Test.TestClient:24 - 
-Heyyy
-11.12 02.30.44  INFO	ru.sfedu.Test.TestClient:41 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035602, name='The Shawshank Redemption', year=1994}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636669035603, name='It', year=2017}, Film{id=1636673444287, name='The Green Mile', year=1999}, Film{id=1636673444287, name='The Shawshank Redemption', year=1994}, Film{id=1636673444287, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636673444287, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636673444287, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}]
-11.12 02.30.44  INFO	ru.sfedu.Test.TestClient:45 - Film{id=1636669035602, name='The Shawshank Redemption', year=1994}
-11.12 02.30.44  INFO	ru.sfedu.Test.TestClient:49 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636669035603, name='It', year=2017}, Film{id=1636673444287, name='The Green Mile', year=1999}, Film{id=1636673444287, name='The Shawshank Redemption', year=1994}, Film{id=1636673444287, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636673444287, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636673444287, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}]
-11.12 02.30.44  INFO	ru.sfedu.Test.TestClient:53 - [Film{id=1636669035601, name='The Green Mile', year=1999}, Film{id=1636669035604, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636669035605, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636673444287, name='The Green Mile', year=1999}, Film{id=1636673444287, name='The Shawshank Redemption', year=1994}, Film{id=1636673444287, name='The Lord of the Rings: The Return of the King', year=2003}, Film{id=1636673444287, name='The Lord of the Rings: The Two Towers', year=2002}, Film{id=1636673444287, name='The Lord of the Rings: The Fellowship of the Ring', year=2001}, Film{id=1636669035603, name='It', year=2017}]
+11.19 01.56.24  INFO	ru.sfedu.Test.TestClient:58 - Result{resultState=Success, message='Film updated successfully', data=[Film{id=1636669035603, name='It', year=2017}]}
+11.19 02.42.13  INFO	ru.sfedu.Test.TestClient:48 - null
+11.19 02.44.44  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 02.52.28  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 02.54.31  INFO	ru.sfedu.Test.TestClient:48 - null
+11.19 02.55.34  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 03.23.09  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 03.23.09  INFO	ru.sfedu.Test.TestClient:56 - Film{id=1637279734754, name='The Lion King', year=1994}
+11.19 04.00.58  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.00.58  INFO	ru.sfedu.Test.TestClient:56 - null
+11.19 04.01.59  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.10.12  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.10.19  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.12.09  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.12.26  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.16.28  INFO	ru.sfedu.Test.TestClient:52 - null
+11.19 04.16.54  INFO	ru.sfedu.Test.TestClient:52 - null

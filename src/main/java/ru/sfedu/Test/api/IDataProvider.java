@@ -10,15 +10,9 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IDataProvider {
-    List<Film> getFilms() throws IOException;               // Получить все фильмы
-    Film getById(long id) throws IOException;               // Получить фильм по ID
-    Result append(Film film) throws IOException,            // Вставить бин фильма в файл
-            CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException;
-    Result delete(long id) throws IOException,              // Удалить фильм по ID из файла
-            CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException;
-    Result update(long id, Film film) throws IOException,   // Изменить фильм по ID в файле
-            CsvRequiredFieldEmptyException,
-            CsvDataTypeMismatchException;
+    List<Film> getFilms();              // Получить все фильмы
+    Film getById(long id);              // Получить фильм по ID
+    Result<Film> append(Film film);     // Вставить бин фильма в файл
+    Result<Film> delete(long id);       // Удалить фильм по ID из файла
+    Result<Film> update(Film film);     // Изменить фильм по ID в файле
 }
