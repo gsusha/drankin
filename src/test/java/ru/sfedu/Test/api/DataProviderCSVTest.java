@@ -26,22 +26,29 @@ public class DataProviderCSVTest extends TestCase {
     public void tearDown() {
     }
 
+    public void testAppend() {
+        dataProviderCSV.append(film1);
+        dataProviderCSV.append(film2);
+        dataProviderCSV.append(film3);
+        dataProviderCSV.append(film4);
+        dataProviderCSV.append(film5);
+    }
+
     public void testGetters() {
         dataProviderCSV.getFilms();
     }
 
-    public void testAppend() {
-        dataProviderCSV.append(film1);
-    }
-
     public void testDelete() {
-        dataProviderCSV.delete(1636669035601L);
+        dataProviderCSV.delete(film1.getId());
+        dataProviderCSV.delete(film3.getId());
+        dataProviderCSV.delete(film5.getId());
     }
 
     public void testUpdate() throws IOException {
-        Film film = dataProviderCSV.getById(1636669035602L);
-        film.setName(film2.getName());
-        film.setYear(film2.getYear());
+        Film film = new Film ("Dune", 2021);
+        dataProviderCSV.append(film);
+        film.setName("Star Wars IV: A New Hope");
+        film.setYear(1977);
         dataProviderCSV.update(film);
     }
 }

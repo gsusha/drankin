@@ -21,8 +21,8 @@ public class TestClient {
         //log.info(ConfigurationUtil.getConfigurationEntry(Constants.APP_NAME));
         //log.info(ConfigurationUtil.getConfigurationEntry(Constants.PATH_TO_HOME));
 
-        //testCsvCrud();
-        testXmlCrud();
+        testCsvCrud();
+        //testXmlCrud();
     }
 
     public TestClient() {
