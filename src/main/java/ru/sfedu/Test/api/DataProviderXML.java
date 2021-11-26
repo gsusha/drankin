@@ -1,64 +1,101 @@
 package ru.sfedu.Test.api;
 
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import ru.sfedu.Test.Constants;
 import ru.sfedu.Test.model.Result;
 import ru.sfedu.Test.model.ResultState;
 import ru.sfedu.Test.model.beans.Film;
+import ru.sfedu.Test.model.beans.FilmsWrapper;
 import ru.sfedu.Test.utils.ConfigurationUtil;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DataProviderXML implements IDataProvider {
-    String xmlFile = ConfigurationUtil.getConfigurationEntry(Constants.XML_FILE);
+    private final Serializer serializer = new Persister();
+    private final String xmlFile = ConfigurationUtil.getConfigurationEntry(Constants.XML_FILE);
+    private final File file = new File(xmlFile);
 
     public DataProviderXML() throws IOException {
+        // TODO: Тут надо давать возможность указать хмл файл?
+        file.createNewFile();
     }
 
     @Override
     public List<Film> getFilms() {
-        return null;
+        try {
+            return serializer.read(FilmsWrapper.class, file).getFilms();
+        } catch (Exception ignored) {}
+        return new ArrayList<Film>();
     }
 
     @Override
     public Film getById(long id) {
-        Serializer serializer = new Persister();
-        File file = new File(xmlFile);
-
-        try {
-            Film film = serializer.read(Film.class, file);
-            return film;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return getFilms().stream()
+                .filter(a -> a.getId() == id)
+                .collect(Collectors.toList())
+                .get(0);
     }
 
     @Override
-    public Result append(Film film) {
-        Serializer serializer = new Persister();
+    public Film append(Film film) {
         try {
-            // TODO: Фильмы вставляются не с новой строки
-            Writer writer = new FileWriter(xmlFile, false);
-            serializer.write(film, writer);
+            if (getById(film.getId()) != null)
+                film = new Film(film.getName(), film.getYear());
+        } catch (Exception ignored) {}
+        List<Film> films = getFilms();
+        films.add(film);
+        try {
+            Writer writer = new FileWriter(file);
+            serializer.write(new FilmsWrapper(films), writer);
+            writer.close();
+        } catch (Exception ignored) {
+            return new Film();
+        }
+        return film;
+    }
+
+    @Override
+    public Result<Film> delete(long id) {
+        try {
+            getById(id);
+        } catch (IndexOutOfBoundsException e) {
+            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        }
+
+        List<Film> films;
+        films = getFilms();
+        films.removeIf(film -> (film.getId() == id));
+        try {
+            Writer writer = new FileWriter(file);
+            serializer.write(new FilmsWrapper(films), writer);
+            writer.close();
+        } catch (Exception e) {
+            return new Result<Film>(films, ResultState.Error, e.toString());
+        }
+        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_DELETE_SUCCESS);
+    }
+
+    @Override
+    public Result<Film> update(Film film) {
+        Film newFilm;
+        try {
+            newFilm = getById(film.getId());
+            newFilm.setName(film.getName());
+            newFilm.setYear(film.getYear());
+            delete(film.getId());
+            append(newFilm);
         } catch (Exception e) {
             return new Result<Film>(List.of(film), ResultState.Error, e.toString());
         }
-        return new Result<Film>(List.of(film), ResultState.Success, Constants.RESULT_MESSAGE_APPEND);
-    }
-
-    @Override
-    public Result delete(long id) {
-        return null;
-    }
-
-    @Override
-    public Result update(Film film) {
-        return null;
+        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_UPDATE_SUCCESS);
     }
 }

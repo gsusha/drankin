@@ -4,14 +4,12 @@ import java.util.List;
 
 public class Result<T> {
     private List<T> data;
+    private ResultState resultState;
+    private String message;
 
     public Result(List<T> data, ResultState resultState, String message) {
-        this.data = data;
         this.resultState = resultState;
         this.message = message;
-    }
-
-    public void setData(List<T> data) {
         this.data = data;
     }
 
@@ -23,11 +21,8 @@ public class Result<T> {
         this.message = message;
     }
 
-    private ResultState resultState;
-    private String message;
-
-    public List<T> getData() {
-        return data;
+    public void setData(List<T> data) {
+        this.data = data;
     }
 
     public ResultState getResultState() {
@@ -36,6 +31,10 @@ public class Result<T> {
 
     public String getMessage() {
         return message;
+    }
+
+    public List<T> getData() {
+        return data;
     }
 
     @Override

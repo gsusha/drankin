@@ -3,14 +3,17 @@ package ru.sfedu.Test.model.beans;
 import com.opencsv.bean.CsvBindByName;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+import ru.sfedu.Test.Constants;
 
-import java.io.Serializable;
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.Year;
 import java.util.Objects;
 
-// TODO: Как нормально задать рут для списка без использования класса-обёртки?
+@Root
 public class Film implements Serializable {
+
     @CsvBindByName(required = true)
     @Attribute
     private long id;
@@ -31,17 +34,16 @@ public class Film implements Serializable {
         setYear(year);
     }
 
-
     public void setName(String name) throws IOException {
         if (name.length() < 255) {
             this.name = name;
-        } else throw new IOException("Invalid name");
+        } else throw new IOException(Constants.FILM_INVALID_NAME);
     }
 
     public void setYear(int year) throws IOException {
-        if (year > 0 || year < Year.now().getValue()) {
+        if (year > 0 && year < Year.now().getValue() + 100) {
             this.year = year;
-        } else throw new IOException("Invalid year");
+        } else throw new IOException(Constants.FILM_INVALID_YEAR);
     }
 
     public long getId() {
@@ -62,6 +64,7 @@ public class Film implements Serializable {
                 ", name='" + name + '\'' +
                 ", year=" + year +
                 '}';
+        // return "\nFilm { " + id + " // " + name + " (" + year +") }";
     }
 
     public boolean equals(Object o) {

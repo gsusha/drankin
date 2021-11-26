@@ -6,9 +6,9 @@
         </Console>
         <RollingFile name="FileAppender"
                      fileName="debug.log"
-                     filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd}.log"
+                     filePattern="logs/log_%d{yyyy-MM-dd}.log"
                      append = "true">
-            <PatternLayout pattern="%d{MM.dd HH.mm.ss} %5p\t%c:%L - %m%n" />
+            <PatternLayout pattern="%d{yyyy.MM.dd HH.mm.ss} %5p\t%c:%L - %m%n" />
             <Policies>
                 <SizeBasedTriggeringPolicy size="5 KB" />
             </Policies>

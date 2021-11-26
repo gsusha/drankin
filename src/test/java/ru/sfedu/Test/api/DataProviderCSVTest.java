@@ -1,54 +1,70 @@
 package ru.sfedu.Test.api;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import ru.sfedu.Test.model.ResultState;
 import ru.sfedu.Test.model.beans.Film;
 
 import java.io.IOException;
 
-public class DataProviderCSVTest extends TestCase {
+public class DataProviderCSVTest {
     DataProviderCSV dataProviderCSV;
-    Film film1;
-    Film film2;
-    Film film3;
-    Film film4;
-    Film film5;
 
+    @Before
     public void setUp() throws Exception {
-        super.setUp();
         dataProviderCSV = new DataProviderCSV();
-        film1 = new Film("The Lion King", 1994);
-        film2 = new Film("Ivan Vasil'evich menyaet professiyu", 1973);
-        film3 = new Film("Interstellar", 2014);
-        film4 = new Film("Forrest Gump", 1994);
-        film5 = new Film("Coco", 2017);
     }
 
+    @After
     public void tearDown() {
+        dataProviderCSV = null;
     }
 
-    public void testAppend() {
-        dataProviderCSV.append(film1);
-        dataProviderCSV.append(film2);
-        dataProviderCSV.append(film3);
-        dataProviderCSV.append(film4);
-        dataProviderCSV.append(film5);
+    @Test
+    public void testAppend() throws IOException {
+        Film film = new Film("Twilight", 2008);
+        film = dataProviderCSV.append(film);
     }
 
-    public void testGetters() {
+    @Test
+    public void testGettersPositive() throws IOException {
+        Film film = new Film("Twilight 2", 2009);
+        film = dataProviderCSV.append(film);
         dataProviderCSV.getFilms();
+        dataProviderCSV.getById(film.getId());
     }
 
-    public void testDelete() {
-        dataProviderCSV.delete(film1.getId());
-        dataProviderCSV.delete(film3.getId());
-        dataProviderCSV.delete(film5.getId());
+    @Test
+    public void testDeletePositive() throws IOException {
+        Film film = new Film("Twilight 3", 2010);
+        film = dataProviderCSV.append(film);
+        dataProviderCSV.delete(film.getId());
     }
 
-    public void testUpdate() throws IOException {
-        Film film = new Film ("Dune", 2021);
-        dataProviderCSV.append(film);
-        film.setName("Star Wars IV: A New Hope");
-        film.setYear(1977);
+    @Test
+    public void testUpdatePositive() throws IOException {
+        Film film = new Film("Twilight 4.1", 2011);
+        film = dataProviderCSV.append(film);
+        film.setName("Twilight 4.2");
+        film.setYear(2012);
         dataProviderCSV.update(film);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testGettersNegative() {
+        Assert.assertNull(dataProviderCSV.getById(0L));
+    }
+
+    @Test
+    public void testDeleteNegative() {
+        Assert.assertEquals(ResultState.Warning, dataProviderCSV.delete(0L).getResultState());
+    }
+
+    @Test
+    public void testUpdateNegative() throws IOException {
+        Assert.assertEquals(ResultState.Error,
+                dataProviderCSV.update(new Film("Twilight 5", 2052)).getResultState());
     }
 }
