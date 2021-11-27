@@ -33,14 +33,14 @@ public class DataProviderXMLTest {
         Film film = new Film("Twilight 2", 2009);
         film = dataProviderXML.append(film);
         dataProviderXML.getFilms();
-        dataProviderXML.getById(film.getId());
+        Assert.assertEquals(film, dataProviderXML.getById(film.getId()));
     }
 
     @Test
     public void testDeletePositive() throws IOException {
         Film film = new Film("Twilight 3", 2010);
         film = dataProviderXML.append(film);
-        dataProviderXML.delete(film.getId());
+        Assert.assertEquals(ResultState.Success, dataProviderXML.delete(film.getId()).getResultState());
     }
 
     @Test
@@ -49,10 +49,10 @@ public class DataProviderXMLTest {
         film = dataProviderXML.append(film);
         film.setName("Twilight 4.2");
         film.setYear(2012);
-        dataProviderXML.update(film);
+        Assert.assertEquals(ResultState.Success, dataProviderXML.update(film).getResultState());
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testGettersNegative() {
         Assert.assertNull(dataProviderXML.getById(0L));
     }
@@ -64,7 +64,7 @@ public class DataProviderXMLTest {
 
     @Test
     public void testUpdateNegative() throws IOException {
-        Assert.assertEquals(ResultState.Error,
+        Assert.assertEquals(ResultState.Warning,
                 dataProviderXML.update(new Film("Twilight 5", 2052)).getResultState());
     }
 }

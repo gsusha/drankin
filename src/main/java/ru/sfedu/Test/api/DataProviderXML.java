@@ -39,10 +39,8 @@ public class DataProviderXML implements IDataProvider {
 
     @Override
     public Film getById(long id) {
-        return getFilms().stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList())
-                .get(0);
+        List<Film> films = getFilms().stream().filter(a -> a.getId() == id).toList();
+        return films.isEmpty() ? null : films.get(0);
     }
 
     @Override
@@ -65,12 +63,9 @@ public class DataProviderXML implements IDataProvider {
 
     @Override
     public Result<Film> delete(long id) {
-        try {
-            getById(id);
-        } catch (IndexOutOfBoundsException e) {
+        if (getById(id) == null) {
             return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
-
         List<Film> films;
         films = getFilms();
         films.removeIf(film -> (film.getId() == id));
@@ -86,6 +81,9 @@ public class DataProviderXML implements IDataProvider {
 
     @Override
     public Result<Film> update(Film film) {
+        if (getById(film.getId()) == null) {
+            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        }
         Film newFilm;
         try {
             newFilm = getById(film.getId());

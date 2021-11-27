@@ -52,7 +52,7 @@ public class DataProviderCSVTest {
         dataProviderCSV.update(film);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
+    @Test
     public void testGettersNegative() {
         Assert.assertNull(dataProviderCSV.getById(0L));
     }
@@ -64,7 +64,7 @@ public class DataProviderCSVTest {
 
     @Test
     public void testUpdateNegative() throws IOException {
-        Assert.assertEquals(ResultState.Error,
+        Assert.assertEquals(ResultState.Warning,
                 dataProviderCSV.update(new Film("Twilight 5", 2052)).getResultState());
     }
 }

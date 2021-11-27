@@ -7,18 +7,15 @@ import ru.sfedu.Test.Constants;
 import ru.sfedu.Test.model.Result;
 import ru.sfedu.Test.model.ResultState;
 import ru.sfedu.Test.model.beans.Film;
-import ru.sfedu.Test.model.beans.FilmsWrapper;
 import ru.sfedu.Test.utils.ConfigurationUtil;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DataProviderCSV implements IDataProvider {
 
@@ -40,10 +37,8 @@ public class DataProviderCSV implements IDataProvider {
 
     @Override
     public Film getById(long id) {
-        return getFilms().stream()
-                .filter(a -> a.getId() == id)
-                .collect(Collectors.toList())
-                .get(0);
+        List<Film> films = getFilms().stream().filter(a -> a.getId() == id).toList();
+        return films.isEmpty() ? null : films.get(0);
     }
 
     @Override
@@ -67,12 +62,9 @@ public class DataProviderCSV implements IDataProvider {
 
     @Override
     public Result<Film> delete(long id) {
-        try {
-            getById(id);
-        } catch (IndexOutOfBoundsException e) {
+        if (getById(id) == null) {
             return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
-
         List<Film> films;
         films = getFilms();
         films.removeIf(film -> (film.getId() == id));
@@ -89,6 +81,9 @@ public class DataProviderCSV implements IDataProvider {
 
     @Override
     public Result<Film> update(Film film) {
+        if (getById(film.getId()) == null) {
+            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        }
         Film newFilm;
         try {
             newFilm = getById(film.getId());
