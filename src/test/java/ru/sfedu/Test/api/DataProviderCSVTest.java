@@ -26,21 +26,22 @@ public class DataProviderCSVTest {
     public void testAppend() throws IOException {
         Film film = new Film("Twilight", 2008);
         film = dataProviderCSV.append(film);
+        Assert.assertEquals(film, dataProviderCSV.getById(film.getId()));
     }
 
     @Test
     public void testGettersPositive() throws IOException {
+        dataProviderCSV.getFilms();
         Film film = new Film("Twilight 2", 2009);
         film = dataProviderCSV.append(film);
-        dataProviderCSV.getFilms();
-        dataProviderCSV.getById(film.getId());
+        Assert.assertEquals(film, dataProviderCSV.getById(film.getId()));
     }
 
     @Test
     public void testDeletePositive() throws IOException {
         Film film = new Film("Twilight 3", 2010);
         film = dataProviderCSV.append(film);
-        dataProviderCSV.delete(film.getId());
+        Assert.assertEquals(ResultState.Success, dataProviderCSV.delete(film.getId()).getResultState());
     }
 
     @Test
@@ -49,7 +50,7 @@ public class DataProviderCSVTest {
         film = dataProviderCSV.append(film);
         film.setName("Twilight 4.2");
         film.setYear(2012);
-        dataProviderCSV.update(film);
+        Assert.assertEquals(ResultState.Success, dataProviderCSV.update(film).getResultState());
     }
 
     @Test

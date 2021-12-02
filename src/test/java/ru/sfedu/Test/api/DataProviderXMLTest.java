@@ -26,13 +26,14 @@ public class DataProviderXMLTest {
     public void testAppend() throws IOException {
         Film film = new Film("Twilight", 2008);
         film = dataProviderXML.append(film);
+        Assert.assertEquals(film, dataProviderXML.getById(film.getId()));
     }
 
     @Test
     public void testGettersPositive() throws IOException {
+        dataProviderXML.getFilms();
         Film film = new Film("Twilight 2", 2009);
         film = dataProviderXML.append(film);
-        dataProviderXML.getFilms();
         Assert.assertEquals(film, dataProviderXML.getById(film.getId()));
     }
 
