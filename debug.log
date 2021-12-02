@@ -1,7 +1,0 @@
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:65 - Film{id=1638478861337, name='The Green Mile', year=1999}
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:68 - Result{resultState=Success, message='Films wrote successfully', data=[Film{id=1638478861337, name='The Green Mile', year=1999}, Film{id=1638478861537, name='The Lord of the Rings', year=2001}]}
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:74 - Result{resultState=Success, message='Films wrote successfully', data=[Film{id=1638478861537, name='It', year=2017}]}
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:37 - [Film{id=1638478861725, name='The Lion King', year=1994}, Film{id=1638478861796, name='Interstellar', year=2014}, Film{id=1638478861803, name='Forrest Gump', year=1994}]
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:38 - Film{id=1638478861725, name='The Lion King', year=1994}
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:41 - Result{resultState=Success, message='Films wrote successfully', data=[Film{id=1638478861725, name='The Lion King', year=1994}, Film{id=1638478861803, name='Forrest Gump', year=1994}]}
-2021.12.03 00.01.01  INFO	ru.sfedu.Test.TestClient:47 - Result{resultState=Success, message='Films wrote successfully', data=[Film{id=1638478861803, name='It', year=2017}]}
