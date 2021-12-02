@@ -1,4 +1,4 @@
-package ru.sfedu.Test.model.beans;
+package ru.sfedu.test.model.beans;
 
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;

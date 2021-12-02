@@ -1,38 +1,39 @@
-package ru.sfedu.Test.api;
+package ru.sfedu.test.api;
 
-import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import ru.sfedu.Test.Constants;
-import ru.sfedu.Test.model.Result;
-import ru.sfedu.Test.model.ResultState;
-import ru.sfedu.Test.model.beans.Film;
-import ru.sfedu.Test.utils.ConfigurationUtil;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+import ru.sfedu.test.Constants;
+import ru.sfedu.test.model.Result;
+import ru.sfedu.test.model.ResultState;
+import ru.sfedu.test.model.beans.Film;
+import ru.sfedu.test.model.beans.FilmsWrapper;
+import ru.sfedu.test.utils.ConfigurationUtil;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataProviderCSV implements IDataProvider {
-    private final String csvFile = ConfigurationUtil.getConfigurationEntry(Constants.CSV_FILE);
-    private final File file = new File(csvFile);
+public class DataProviderXML implements IDataProvider {
+    private final Serializer serializer = new Persister();
+    private final String xmlFile = ConfigurationUtil.getConfigurationEntry(Constants.XML_FILE);
+    private final File file = new File(xmlFile);
 
-    public DataProviderCSV() throws IOException {
-        // TODO: Тут надо давать возможность указать цсв файл?
+    public DataProviderXML() throws IOException {
+        // TODO: Тут надо давать возможность указать хмл файл?
         file.createNewFile();
     }
 
     private Result<Film> write(List<Film> films) {
         try {
             Writer writer = new FileWriter(file);
-            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
-            beanToCsv.write(films);
+            serializer.write(new FilmsWrapper(films), writer);
             writer.close();
         } catch (Exception e) {
             return new Result<Film>(
-                    films,
-                    ResultState.Error,
-                    Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+                    films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
         return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
@@ -40,7 +41,7 @@ public class DataProviderCSV implements IDataProvider {
     @Override
     public List<Film> getFilms() {
         try {
-            return new CsvToBeanBuilder<Film>(new FileReader(file)).withType(Film.class).build().parse();
+            return serializer.read(FilmsWrapper.class, file).getFilms();
         } catch (Exception ignored) {}
         return new ArrayList<Film>();
     }

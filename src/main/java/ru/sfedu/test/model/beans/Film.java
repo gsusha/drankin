@@ -1,10 +1,10 @@
-package ru.sfedu.Test.model.beans;
+package ru.sfedu.test.model.beans;
 
 import com.opencsv.bean.CsvBindByName;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-import ru.sfedu.Test.Constants;
+import ru.sfedu.test.Constants;
 
 import java.io.IOException;
 import java.io.Serializable;

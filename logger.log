@@ -1,31 +1,31 @@
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:24 - Launching the application...
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:25 - Operating System: Windows 10 10.0
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:27 - JRE: 16.0.2
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:28 - Java Launched From: C:\Program Files\Java\jdk-16.0.2
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:29 - Class Path: target/Test-1.0-jar-with-dependencies.jar
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:30 - Library Path: C:\Program Files\Java\jdk-16.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Maven\bin;C:\Program Files\Flutter\bin;C:\Users\RUzai\AppData\Local\Microsoft\WindowsApps;C:\Users\RUzai\AppData\Roaming\npm;.
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:31 - User Home Directory: C:\Users\RUzai
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:32 - User Working Directory: C:\Users\RUzai\IdeaProjects\Test
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:33 - Test INFO logging.
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:15 - Test
-10.08 03.37.26  INFO	ru.sfedu.Test.TestClient:16 - ru.sfedu.Test
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:24 - Launching the application...
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:25 - Operating System: Windows 10 10.0
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:27 - JRE: 16.0.2
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:28 - Java Launched From: C:\Program Files\Java\jdk-16.0.2
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:29 - Class Path: target/Test-1.0-jar-with-dependencies.jar
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:30 - Library Path: C:\Program Files\Java\jdk-16.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Maven\bin;C:\Program Files\Flutter\bin;C:\Users\RUzai\AppData\Local\Microsoft\WindowsApps;C:\Users\RUzai\AppData\Roaming\npm;.
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:31 - User Home Directory: C:\Users\RUzai
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:32 - User Working Directory: C:\Users\RUzai\IdeaProjects\Test
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:33 - Test INFO logging.
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:15 - Test
-10.08 03.37.47  INFO	ru.sfedu.Test.TestClient:16 - ru.sfedu.Test
-10.08 03.40.57 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 03.57.18 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 04.14.58 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 04.17.31 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 08.38.02 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 08.41.10 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 09.20.56 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.08 09.25.29 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
-10.14 21.03.17 ERROR	ru.sfedu.Test.TestClient:18 - Heyyy
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:24 - Launching the application...
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:25 - Operating System: Windows 10 10.0
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:27 - JRE: 16.0.2
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:28 - Java Launched From: C:\Program Files\Java\jdk-16.0.2
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:29 - Class Path: target/Test-1.0-jar-with-dependencies.jar
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:30 - Library Path: C:\Program Files\Java\jdk-16.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Maven\bin;C:\Program Files\Flutter\bin;C:\Users\RUzai\AppData\Local\Microsoft\WindowsApps;C:\Users\RUzai\AppData\Roaming\npm;.
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:31 - User Home Directory: C:\Users\RUzai
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:32 - User Working Directory: C:\Users\RUzai\IdeaProjects\Test
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:33 - Test INFO logging.
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:15 - Test
+10.08 03.37.26  INFO	ru.sfedu.test.TestClient:16 - ru.sfedu.test
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:24 - Launching the application...
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:25 - Operating System: Windows 10 10.0
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:27 - JRE: 16.0.2
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:28 - Java Launched From: C:\Program Files\Java\jdk-16.0.2
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:29 - Class Path: target/Test-1.0-jar-with-dependencies.jar
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:30 - Library Path: C:\Program Files\Java\jdk-16.0.2\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Maven\bin;C:\Program Files\Flutter\bin;C:\Users\RUzai\AppData\Local\Microsoft\WindowsApps;C:\Users\RUzai\AppData\Roaming\npm;.
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:31 - User Home Directory: C:\Users\RUzai
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:32 - User Working Directory: C:\Users\RUzai\IdeaProjects\Test
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:33 - Test INFO logging.
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:15 - Test
+10.08 03.37.47  INFO	ru.sfedu.test.TestClient:16 - ru.sfedu.test
+10.08 03.40.57 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 03.57.18 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 04.14.58 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 04.17.31 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 08.38.02 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 08.41.10 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 09.20.56 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.08 09.25.29 ERROR	ru.sfedu.test.TestClient:18 - Heyyy
+10.14 21.03.17 ERROR	ru.sfedu.test.TestClient:18 - Heyyy

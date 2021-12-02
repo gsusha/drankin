@@ -14,30 +14,30 @@
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <mainClass>ru.sfedu.Test.TestClient</mainClass>
+        <mainClass>ru.sfedu.test.TestClient</mainClass>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.13.0</version>
+            <version>2.14.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.13.0</version>
+            <version>2.14.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>2.3</version>
+            <version>3.3.0</version>
             <type>maven-plugin</type>
         </dependency>
         <dependency>
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
-            <version>5.5</version>
+            <version>5.5.2</version>
         </dependency>
         <dependency>
             <groupId>org.simpleframework</groupId>
@@ -62,7 +62,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>ru.sfedu.Test.TestClient</mainClass>
+                            <mainClass>ru.sfedu.test.TestClient</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

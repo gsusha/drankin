@@ -1,4 +1,4 @@
-package ru.sfedu.Test.utils;
+package ru.sfedu.test.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

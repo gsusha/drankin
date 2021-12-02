@@ -1,10 +1,10 @@
-package ru.sfedu.Test;
+package ru.sfedu.test;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.sfedu.Test.api.DataProviderCSV;
-import ru.sfedu.Test.api.DataProviderXML;
-import ru.sfedu.Test.model.beans.Film;
+import ru.sfedu.test.api.DataProviderCSV;
+import ru.sfedu.test.api.DataProviderXML;
+import ru.sfedu.test.model.beans.Film;
 
 import java.io.IOException;
 

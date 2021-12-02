@@ -15,7 +15,7 @@
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Logger name="ru.sfedu.Test" level="error">
+        <Logger name="ru.sfedu.test" level="error">
             <AppenderRef ref="ConsoleAppender" />
             <AppenderRef ref="FileAppender"/>
         </Logger>

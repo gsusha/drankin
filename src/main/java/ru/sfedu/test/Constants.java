@@ -1,4 +1,4 @@
-package ru.sfedu.Test;
+package ru.sfedu.test;
 
 public class Constants {
     public static String APP_NAME = "APP_NAME";

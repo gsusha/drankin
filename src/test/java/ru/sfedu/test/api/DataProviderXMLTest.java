@@ -1,11 +1,11 @@
-package ru.sfedu.Test.api;
+package ru.sfedu.test.api;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.sfedu.Test.model.ResultState;
-import ru.sfedu.Test.model.beans.Film;
+import ru.sfedu.test.model.ResultState;
+import ru.sfedu.test.model.beans.Film;
 
 import java.io.IOException;
 

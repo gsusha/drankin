@@ -1,11 +1,11 @@
-package ru.sfedu.Test.model.beans;
+package ru.sfedu.test.model.beans;
 
 import org.codehaus.plexus.util.StringUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ru.sfedu.Test.Constants;
+import ru.sfedu.test.Constants;
 
 import java.io.IOException;
 import java.util.Objects;

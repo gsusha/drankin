@@ -1,4 +1,4 @@
-package ru.sfedu.Test.model;
+package ru.sfedu.test.model;
 
 public enum ResultState {
     Success,

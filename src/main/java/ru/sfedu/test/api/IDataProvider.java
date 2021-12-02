@@ -1,7 +1,7 @@
-package ru.sfedu.Test.api;
+package ru.sfedu.test.api;
 
-import ru.sfedu.Test.model.Result;
-import ru.sfedu.Test.model.beans.Film;
+import ru.sfedu.test.model.Result;
+import ru.sfedu.test.model.beans.Film;
 
 import java.util.List;
 
