@@ -1,7 +1,5 @@
 package ru.sfedu.Test.api;
 
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import ru.sfedu.Test.Constants;
@@ -17,7 +15,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DataProviderXML implements IDataProvider {
     private final Serializer serializer = new Persister();
@@ -27,6 +24,18 @@ public class DataProviderXML implements IDataProvider {
     public DataProviderXML() throws IOException {
         // TODO: Тут надо давать возможность указать хмл файл?
         file.createNewFile();
+    }
+
+    private Result<Film> write(List<Film> films) {
+        try {
+            Writer writer = new FileWriter(file);
+            serializer.write(new FilmsWrapper(films), writer);
+            writer.close();
+        } catch (Exception e) {
+            return new Result<Film>(
+                    films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+        }
+        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 
     @Override
@@ -51,13 +60,7 @@ public class DataProviderXML implements IDataProvider {
         } catch (Exception ignored) {}
         List<Film> films = getFilms();
         films.add(film);
-        try {
-            Writer writer = new FileWriter(file);
-            serializer.write(new FilmsWrapper(films), writer);
-            writer.close();
-        } catch (Exception ignored) {
-            return new Film();
-        }
+        write(films);
         return film;
     }
 
@@ -69,14 +72,7 @@ public class DataProviderXML implements IDataProvider {
         List<Film> films;
         films = getFilms();
         films.removeIf(film -> (film.getId() == id));
-        try {
-            Writer writer = new FileWriter(file);
-            serializer.write(new FilmsWrapper(films), writer);
-            writer.close();
-        } catch (Exception e) {
-            return new Result<Film>(films, ResultState.Error, e.toString());
-        }
-        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_DELETE_SUCCESS);
+        return write(films);
     }
 
     @Override
@@ -94,6 +90,6 @@ public class DataProviderXML implements IDataProvider {
         } catch (Exception e) {
             return new Result<Film>(List.of(film), ResultState.Error, e.toString());
         }
-        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_UPDATE_SUCCESS);
+        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 }

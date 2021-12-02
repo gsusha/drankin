@@ -10,8 +10,7 @@ public class Constants {
     public static String CSV_FILE = "CSV_FILE";
     public static String XML_FILE = "XML_FILE";
 
+    public static String RESULT_MESSAGE_WRITING_SUCCESS = "Films wrote successfully";
+    public static String RESULT_MESSAGE_WRITING_ERROR = "Error while writing to file: ";
     public static String RESULT_MESSAGE_NOT_FOUND = "Film with this ID not found";
-
-    public static String RESULT_MESSAGE_DELETE_SUCCESS = "Film deleted successfully";
-    public static String RESULT_MESSAGE_UPDATE_SUCCESS = "Film updated successfully";
 }

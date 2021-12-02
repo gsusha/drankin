@@ -9,22 +9,32 @@ import ru.sfedu.Test.model.ResultState;
 import ru.sfedu.Test.model.beans.Film;
 import ru.sfedu.Test.utils.ConfigurationUtil;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataProviderCSV implements IDataProvider {
-
     private final String csvFile = ConfigurationUtil.getConfigurationEntry(Constants.CSV_FILE);
     private final File file = new File(csvFile);
 
     public DataProviderCSV() throws IOException {
         // TODO: Тут надо давать возможность указать цсв файл?
         file.createNewFile();
+    }
+
+    private Result<Film> write(List<Film> films) {
+        try {
+            Writer writer = new FileWriter(file);
+            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
+            beanToCsv.write(films);
+            writer.close();
+        } catch (Exception e) {
+            return new Result<Film>(
+                    films,
+                    ResultState.Error,
+                    Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+        }
+        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 
     @Override
@@ -49,14 +59,7 @@ public class DataProviderCSV implements IDataProvider {
         } catch (Exception ignored) {}
         List<Film> films = getFilms();
         films.add(film);
-        try {
-            Writer writer = new FileWriter(file);
-            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
-            beanToCsv.write(films);
-            writer.close();
-        } catch (Exception ignored) {
-            return new Film();
-        }
+        write(films);
         return film;
     }
 
@@ -68,15 +71,7 @@ public class DataProviderCSV implements IDataProvider {
         List<Film> films;
         films = getFilms();
         films.removeIf(film -> (film.getId() == id));
-        try {
-            Writer writer = new FileWriter(file);
-            StatefulBeanToCsv<Film> beanToCsv = new StatefulBeanToCsvBuilder<Film>(writer).build();
-            beanToCsv.write(films);
-            writer.close();
-        } catch (Exception e) {
-            return new Result<Film>(films, ResultState.Error, e.toString());
-        }
-        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_DELETE_SUCCESS);
+        return write(films);
     }
 
     @Override
@@ -94,6 +89,6 @@ public class DataProviderCSV implements IDataProvider {
         } catch (Exception e) {
             return new Result<Film>(List.of(film), ResultState.Error, e.toString());
         }
-        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_UPDATE_SUCCESS);
+        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 }
