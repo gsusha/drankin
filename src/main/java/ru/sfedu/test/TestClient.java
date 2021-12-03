@@ -1,8 +1,10 @@
 package ru.sfedu.test;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.sfedu.test.api.DataProviderCSV;
+import ru.sfedu.test.api.DataProviderMongo;
 import ru.sfedu.test.api.DataProviderXML;
 import ru.sfedu.test.model.beans.Film;
 
@@ -12,14 +14,42 @@ public class TestClient {
     private static final Logger log = LogManager.getLogger(TestClient.class);
 
     public static void main(String[] args) throws IOException {
-        testCsvCrud();
-        testXmlCrud();
+        BasicConfigurator.configure();
+        testMongoCrud();
+        //testCsvCrud();
+        //testXmlCrud();
     }
 
     public TestClient() {
         log.debug("TestClient: starting application");
     }
 
+    private static void testMongoCrud() throws IOException {
+        Film film;
+        DataProviderMongo dataProviderMongo = new DataProviderMongo();
+
+//        Film film1 = new Film("The Lion King", 1994);
+//        Film film2 = new Film("Interstellar", 2014);
+//        Film film3 = new Film("Forrest Gump", 1994);
+//
+//        // Вставляем
+//        film1 = dataProviderMongo.append(film1);
+//        film2 = dataProviderMongo.append(film2);
+//        film3 = dataProviderMongo.append(film3);
+
+        // Получаем
+        log.info(dataProviderMongo.getFilms());
+//        log.info(dataProviderMongo.getById(film1.getId()));
+
+        // Удаляем
+//        log.info(dataProviderMongo.delete(film2.getId()));
+
+        // Апдейтим
+//        film = dataProviderMongo.getById(film3.getId());
+//        film.setName("It");
+//        film.setYear(2017);
+//        log.info(dataProviderMongo.update(film));
+    }
     private static void testXmlCrud() throws IOException {
         Film film;
         DataProviderXML dataProviderXML = new DataProviderXML();
