@@ -80,16 +80,12 @@ public class DataProviderXML implements IDataProvider {
         if (getById(film.getId()) == null) {
             return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
-        Film newFilm;
         try {
-            newFilm = getById(film.getId());
-            newFilm.setName(film.getName());
-            newFilm.setYear(film.getYear());
             delete(film.getId());
-            append(newFilm);
+            append(film);
         } catch (Exception e) {
             return new Result<Film>(List.of(film), ResultState.Error, e.toString());
         }
-        return new Result<Film>(List.of(newFilm), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
+        return new Result<Film>(List.of(film), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 }
