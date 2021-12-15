@@ -3,18 +3,22 @@ package ru.sfedu.test.api;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import ru.sfedu.test.Constants;
+import ru.sfedu.test.model.HistoryContent;
 import ru.sfedu.test.model.Result;
 import ru.sfedu.test.model.ResultState;
 import ru.sfedu.test.model.beans.Film;
 import ru.sfedu.test.model.beans.FilmsWrapper;
 import ru.sfedu.test.utils.ConfigurationUtil;
+import ru.sfedu.test.utils.MongoUtil;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DataProviderXML implements IDataProvider {
     private final Serializer serializer = new Persister();
@@ -22,7 +26,6 @@ public class DataProviderXML implements IDataProvider {
     private final File file = new File(xmlFile);
 
     public DataProviderXML() throws IOException {
-        // TODO: Тут надо давать возможность указать хмл файл?
         file.createNewFile();
     }
 
@@ -32,11 +35,25 @@ public class DataProviderXML implements IDataProvider {
             serializer.write(new FilmsWrapper(films), writer);
             writer.close();
         } catch (Exception e) {
+            sendLogs("write", films.get(films.size() - 1), ResultState.Error);
             return new Result<Film>(
                     films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
+        sendLogs("write", films.get(films.size() - 1), ResultState.Success);
         return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
+
+    private void sendLogs(String methodName, Film film, ResultState resultState) {
+        HistoryContent historyContent = new HistoryContent(
+                UUID.randomUUID(),
+                this.getClass().getSimpleName(),
+                LocalDateTime.now().toString(),
+                Constants.DEFAULT_ACTOR,
+                methodName,
+                MongoUtil.objectToString(film),
+                resultState);
+        MongoUtil.saveToLog(historyContent);
+    };
 
     @Override
     public List<Film> getFilms() {

@@ -4,21 +4,28 @@ import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import ru.sfedu.test.Constants;
+import ru.sfedu.test.model.HistoryContent;
 import ru.sfedu.test.model.Result;
 import ru.sfedu.test.model.ResultState;
 import ru.sfedu.test.model.beans.Film;
 import ru.sfedu.test.utils.ConfigurationUtil;
+import ru.sfedu.test.utils.MongoUtil;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class DataProviderCSV implements IDataProvider {
     private final String csvFile = ConfigurationUtil.getConfigurationEntry(Constants.CSV_FILE);
     private final File file = new File(csvFile);
 
     public DataProviderCSV() throws IOException {
-        // TODO: Тут надо давать возможность указать цсв файл?
         file.createNewFile();
     }
 
@@ -29,13 +36,25 @@ public class DataProviderCSV implements IDataProvider {
             beanToCsv.write(films);
             writer.close();
         } catch (Exception e) {
+            sendLogs("write", films.get(films.size() - 1), ResultState.Error);
             return new Result<Film>(
-                    films,
-                    ResultState.Error,
-                    Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+                    films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
+        sendLogs("write", films.get(films.size() - 1), ResultState.Success);
         return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
+
+    private void sendLogs(String methodName, Film film, ResultState resultState) {
+        HistoryContent historyContent = new HistoryContent(
+                UUID.randomUUID(),
+                this.getClass().getSimpleName(),
+                LocalDateTime.now().toString(),
+                Constants.DEFAULT_ACTOR,
+                methodName,
+                MongoUtil.objectToString(film),
+                resultState);
+        MongoUtil.saveToLog(historyContent);
+    };
 
     @Override
     public List<Film> getFilms() {
