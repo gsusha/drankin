@@ -1,9 +1,12 @@
 package ru.sfedu.test;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ru.sfedu.test.api.DataProviderCSV;
+import ru.sfedu.test.api.DataProviderH2;
 import ru.sfedu.test.api.DataProviderXML;
+import ru.sfedu.test.api.IDataProvider;
 import ru.sfedu.test.model.beans.Film;
 
 import java.io.IOException;
@@ -16,13 +19,42 @@ public class TestClient {
     }
 
     public static void main(String[] args) throws IOException {
-        testCsvCrud();
-        testXmlCrud();
+        BasicConfigurator.configure();
+        testH2Crud();
+        //testCsvCrud();
+        //testXmlCrud();
+    }
+
+    private static void testH2Crud() throws IOException {
+        Film film;
+        IDataProvider dataProviderH2 = new DataProviderH2();
+
+        Film film1 = new Film("Harry Potter", 2001);
+        Film film2 = new Film("Inception", 2010);
+        Film film3 = new Film("Home alone", 1990);
+
+        // Вставляем
+        film1 = dataProviderH2.append(film1);
+        film2 = dataProviderH2.append(film2);
+        film3 = dataProviderH2.append(film3);
+
+        // Получаем
+        log.info(dataProviderH2.getFilms());
+        log.info(dataProviderH2.getById(film1.getId()));
+
+        // Удаляем
+        log.info(dataProviderH2.delete(film2.getId()));
+
+        // Апдейтим
+        film = dataProviderH2.getById(film3.getId());
+        film.setName("It");
+        film.setYear(2017);
+        log.info(dataProviderH2.update(film));
     }
 
     private static void testXmlCrud() throws IOException {
         Film film;
-        DataProviderXML dataProviderXML = new DataProviderXML();
+        IDataProvider dataProviderXML = new DataProviderXML();
 
         Film film1 = new Film("The Lion King", 1994);
         Film film2 = new Film("Interstellar", 2014);
@@ -49,7 +81,7 @@ public class TestClient {
 
     private static void testCsvCrud() throws IOException {
         Film film;
-        DataProviderCSV dataProviderCSV = new DataProviderCSV();
+        IDataProvider dataProviderCSV = new DataProviderCSV();
 
         Film film1 = new Film("The Green Mile", 1999);
         Film film2 = new Film("The Shawshank Redemption", 1994);
