@@ -1,5 +1,6 @@
 package ru.sfedu.test.api;
 
+import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -9,7 +10,7 @@ import ru.sfedu.test.model.beans.Film;
 
 import java.io.IOException;
 
-public class DataProviderCSVTest {
+public class DataProviderCSVTest extends TestCase {
     DataProviderCSV dataProviderCSV;
 
     @Before
