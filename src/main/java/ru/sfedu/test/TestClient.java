@@ -21,8 +21,8 @@ public class TestClient {
     public static void main(String[] args) throws IOException {
         BasicConfigurator.configure();
         testH2Crud();
-        //testCsvCrud();
-        //testXmlCrud();
+        testXmlCrud();
+        testCsvCrud();
     }
 
     private static void testH2Crud() throws IOException {

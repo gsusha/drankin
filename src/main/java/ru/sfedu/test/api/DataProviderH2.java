@@ -16,33 +16,37 @@ import java.util.List;
 import java.util.UUID;
 
 public class DataProviderH2 implements IDataProvider {
-    private final String url = ConfigurationUtil.getConfigurationEntry(Constants.H2_URL);
-    private final String user = ConfigurationUtil.getConfigurationEntry(Constants.H2_USER);
-    private final String password = ConfigurationUtil.getConfigurationEntry(Constants.H2_PASSWORD);
+    String url = ConfigurationUtil.getConfigurationEntry(Constants.H2_URL);
+    String user = ConfigurationUtil.getConfigurationEntry(Constants.H2_USER);
+    String password = ConfigurationUtil.getConfigurationEntry(Constants.H2_PASSWORD);
 
-    public DataProviderH2() throws IOException{}
+    public DataProviderH2() throws IOException {
+    }
 
-    private Result<Film> write(List<Film> films) {
-        // TODO: Тут чота с SQL для записи. Наверн инсерт валуес
-        try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-            for (Film film: films) {
-                statement.executeUpdate(
-                        "CREATE TABLE IF NOT EXISTS films(id LONG PRIMARY KEY, name VARCHAR(255), years INT);" +
-                        "INSERT INTO films " +
-                                "VALUES('" + film.getId() + "','" + film.getName() + "','" + film.getYear() + "');");
-            }
-            statement.close();
-            connection.close();
-        } catch (SQLException e) {
-            //sendLogs("write", films.get(films.size() - 1), ResultState.Error);
-            e.printStackTrace();
-            return new Result<Film>(
-                    films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+    private List<Film> read(String sql) throws SQLException, IOException {
+        List<Film> films = new ArrayList<Film>();
+        Connection connection = DriverManager.getConnection(url, user, password);
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+        while (resultSet.next()) {
+            Film film = new Film(
+                    resultSet.getLong(1),
+                    resultSet.getString(2),
+                    resultSet.getInt(3));
+            films.add(film);
         }
-        //sendLogs("write", films.get(films.size() - 1), ResultState.Success);
-        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
+        resultSet.close();
+        statement.close();
+        connection.close();
+        return films;
+    }
+
+    private void write(String sql) throws SQLException {
+        Connection connection = DriverManager.getConnection(url, user, password);
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(sql);
+        connection.close();
+        statement.close();
     }
 
     private void sendLogs(String methodName, Film film, ResultState resultState) {
@@ -55,97 +59,84 @@ public class DataProviderH2 implements IDataProvider {
                 MongoUtil.objectToString(film),
                 resultState);
         MongoUtil.saveToLog(historyContent);
-    };
+    }
 
     @Override
     public List<Film> getFilms() {
-        // TODO: Тут чота для получения. Наверн СЕЛЕКТ * (не ори на весь дом людей разбудеш ладно мам больше не буду)
         List<Film> films = new ArrayList<Film>();
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM films");
-            while (resultSet.next()) {
-                Film film = new Film(
-                        resultSet.getLong(1),
-                        resultSet.getString(2),
-                        resultSet.getInt(3));
-                films.add(film);
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ArrayList<Film>();
+            films = read("SELECT * FROM films");
+        } catch (Exception ignored) {
         }
         return films;
     }
 
     @Override
     public Film getById(long id) {
+        List<Film> films = new ArrayList<Film>();
+        Film film = null;
         try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM films WHERE id = " + id);
-            if (resultSet.next()) {
-                Film film = new Film(
-                        resultSet.getLong(1),
-                        resultSet.getString(2),
-                        resultSet.getInt(3));
-                return new Film(
-                        resultSet.getLong(1),
-                        resultSet.getString(2),
-                        resultSet.getInt(3));
-            }
-            resultSet.close();
-            statement.close();
-            connection.close();
-            return null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            films = read("SELECT * FROM films WHERE id = " + id);
+            if (films.isEmpty())
+                return null;
+            film = films.get(0);
+        } catch (Exception ignored) {
         }
-
-//        List<Film> films = getFilms().stream().filter(a -> a.getId() == id).toList();
-//        return films.isEmpty() ? null : films.get(0);
+        return film;
     }
 
     @Override
     public Film append(Film film) {
         try {
-            Film film1 = getById(film.getId());
-            System.out.println(film1 != null);
-            if (film1 != null)
-                film = new Film(film.getName(), film.getYear());
-        } catch (Exception ignored) {}
-        List<Film> films = List.of(film);
-        write(films);
+            if (getById(film.getId()) != null)
+                film.setId();
+        } catch (Exception ignored) {
+        }
+        try {
+            write("CREATE TABLE IF NOT EXISTS films(id LONG PRIMARY KEY, name VARCHAR(255), years INT);" +
+                    "INSERT INTO films " +
+                    "VALUES('" + film.getId() + "','" + film.getName() + "','" + film.getYear() + "');");
+        } catch (Exception e) {
+            sendLogs("append", film, ResultState.Error);
+        }
+        sendLogs("append", film, ResultState.Success);
         return film;
     }
 
     @Override
     public Result<Film> delete(long id) {
-        if (getById(id) == null) {
-            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        Film film = getById(id);
+        if (film == null) {
+            return new Result<Film>(new ArrayList<>(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
-        List<Film> films;
-        films = getFilms();
-        films.removeIf(film -> (film.getId() == id));
-        return write(films);
+        try {
+            write("DELETE FROM films WHERE id = " + id);
+        } catch (Exception e) {
+            sendLogs("delete", film, ResultState.Error);
+            return new Result<Film>(
+                    List.of(film), ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+        }
+        sendLogs("delete", film, ResultState.Success);
+        return new Result<Film>(
+                List.of(film), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 
     @Override
     public Result<Film> update(Film film) {
-        if (getById(film.getId()) == null) {
-            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        long id = film.getId();
+        if (getById(id) == null) {
+            return new Result<Film>(new ArrayList<>(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
         try {
-            delete(film.getId());
-            append(film);
+            write("UPDATE films " +
+                    "SET name = '" + film.getName() + "', years = '" + film.getYear() + "" + "'" +
+                    "WHERE id = " + id);
         } catch (Exception e) {
-            return new Result<Film>(List.of(film), ResultState.Error, e.toString());
+            sendLogs("update", film, ResultState.Error);
+            return new Result<Film>(
+                    List.of(film), ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
+        sendLogs("update", film, ResultState.Success);
         return new Result<Film>(List.of(film), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 }
