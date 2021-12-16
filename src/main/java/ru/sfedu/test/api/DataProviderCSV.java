@@ -38,10 +38,11 @@ public class DataProviderCSV implements IDataProvider {
         } catch (Exception e) {
             sendLogs("write", films.get(films.size() - 1), ResultState.Error);
             return new Result<Film>(
-                    films, ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
+                    List.of(films.get(films.size() - 1)), ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
         sendLogs("write", films.get(films.size() - 1), ResultState.Success);
-        return new Result<Film>(films, ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
+        return new Result<Film>(
+                List.of(films.get(films.size() - 1)), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
 
     private void sendLogs(String methodName, Film film, ResultState resultState) {
@@ -54,14 +55,16 @@ public class DataProviderCSV implements IDataProvider {
                 MongoUtil.objectToString(film),
                 resultState);
         MongoUtil.saveToLog(historyContent);
-    };
+    }
 
     @Override
     public List<Film> getFilms() {
+        List<Film> films = new ArrayList<Film>();
         try {
-            return new CsvToBeanBuilder<Film>(new FileReader(file)).withType(Film.class).build().parse();
-        } catch (Exception ignored) {}
-        return new ArrayList<Film>();
+            films = new CsvToBeanBuilder<Film>(new FileReader(file)).withType(Film.class).build().parse();
+        } catch (Exception ignored) {
+        }
+        return films;
     }
 
     @Override
@@ -74,8 +77,9 @@ public class DataProviderCSV implements IDataProvider {
     public Film append(Film film) {
         try {
             if (getById(film.getId()) != null)
-                film = new Film(film.getName(), film.getYear());
-        } catch (Exception ignored) {}
+                film.setId();
+        } catch (Exception ignored) {
+        }
         List<Film> films = getFilms();
         films.add(film);
         write(films);
@@ -84,25 +88,28 @@ public class DataProviderCSV implements IDataProvider {
 
     @Override
     public Result<Film> delete(long id) {
-        if (getById(id) == null) {
-            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        Film film = getById(id);
+        if (film == null) {
+            return new Result<Film>(new ArrayList<>(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
         List<Film> films;
         films = getFilms();
-        films.removeIf(film -> (film.getId() == id));
+        films.removeIf(a -> (a.getId() == id));
         return write(films);
     }
 
     @Override
     public Result<Film> update(Film film) {
-        if (getById(film.getId()) == null) {
-            return new Result<Film>(getFilms(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
+        long id = film.getId();
+        if (getById(id) == null) {
+            return new Result<Film>(new ArrayList<>(), ResultState.Warning, Constants.RESULT_MESSAGE_NOT_FOUND);
         }
         try {
-            delete(film.getId());
+            delete(id);
             append(film);
         } catch (Exception e) {
-            return new Result<Film>(List.of(film), ResultState.Error, e.toString());
+            return new Result<Film>(
+                    List.of(film), ResultState.Error, Constants.RESULT_MESSAGE_WRITING_ERROR + e.getMessage());
         }
         return new Result<Film>(List.of(film), ResultState.Success, Constants.RESULT_MESSAGE_WRITING_SUCCESS);
     }
