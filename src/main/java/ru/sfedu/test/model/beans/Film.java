@@ -29,9 +29,23 @@ public class Film implements Serializable {
     public Film() {}
 
     public Film(String name, int year) throws IOException {
-        this.id = System.currentTimeMillis();
+        setId();
         setName(name);
         setYear(year);
+    }
+
+    public Film(long id, String name, int year) throws IOException {
+        setId(id);
+        setName(name);
+        setYear(year);
+    }
+
+    public void setId() {
+        this.id = System.currentTimeMillis();
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setName(String name) throws IOException {

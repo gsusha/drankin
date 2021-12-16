@@ -11,8 +11,12 @@ public class Constants {
     public static final String XML_FILE = "XML_FILE";
     public static final String MONGO_DB = "MONGO_DB";
 
-    public static final String RESULT_MESSAGE_WRITING_SUCCESS = "Films wrote successfully";
-    public static final String RESULT_MESSAGE_WRITING_ERROR = "Error while writing to file: ";
+    public static final String H2_URL = "H2_URL";
+    public static final String H2_USER = "H2_USER";
+    public static final String H2_PASSWORD = "H2_PASSWORD";
+
+    public static final String RESULT_MESSAGE_WRITING_SUCCESS = "Film wrote successfully";
+    public static final String RESULT_MESSAGE_WRITING_ERROR = "Writing error: ";
     public static final String RESULT_MESSAGE_NOT_FOUND = "Film with this ID not found";
 
     public static final String DEFAULT_ACTOR = "System";
