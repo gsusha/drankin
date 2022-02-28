@@ -1,24 +1,23 @@
 package ru.sfedu.test.api;
 
-import junit.framework.TestCase;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import ru.sfedu.test.model.ResultState;
 import ru.sfedu.test.model.beans.Film;
 
 import java.io.IOException;
 
-public class DataProviderH2Test extends TestCase {
+public class DataProviderH2Test {
     DataProviderH2 dataProviderH2;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         dataProviderH2 = new DataProviderH2();
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
         dataProviderH2 = null;
     }
@@ -27,7 +26,7 @@ public class DataProviderH2Test extends TestCase {
     public void testAppend() throws IOException {
         Film film = new Film("Twilight", 2008);
         film = dataProviderH2.append(film);
-        Assert.assertEquals(film, dataProviderH2.getById(film.getId()));
+        Assertions.assertEquals(film, dataProviderH2.getById(film.getId()));
     }
 
     @Test
@@ -35,14 +34,14 @@ public class DataProviderH2Test extends TestCase {
         dataProviderH2.getFilms();
         Film film = new Film("Twilight 2", 2009);
         film = dataProviderH2.append(film);
-        Assert.assertEquals(film, dataProviderH2.getById(film.getId()));
+        Assertions.assertEquals(film, dataProviderH2.getById(film.getId()));
     }
 
     @Test
     public void testDeletePositive() throws IOException {
         Film film = new Film("Twilight 3", 2010);
         film = dataProviderH2.append(film);
-        Assert.assertEquals(ResultState.Success, dataProviderH2.delete(film.getId()).getResultState());
+        Assertions.assertEquals(ResultState.Success, dataProviderH2.delete(film.getId()).getResultState());
     }
 
     @Test
@@ -51,22 +50,22 @@ public class DataProviderH2Test extends TestCase {
         film = dataProviderH2.append(film);
         film.setName("Twilight 4.2");
         film.setYear(2012);
-        Assert.assertEquals(ResultState.Success, dataProviderH2.update(film).getResultState());
+        Assertions.assertEquals(ResultState.Success, dataProviderH2.update(film).getResultState());
     }
 
     @Test
     public void testGettersNegative() {
-        Assert.assertNull(dataProviderH2.getById(0L));
+        Assertions.assertNull(dataProviderH2.getById(0L));
     }
 
     @Test
     public void testDeleteNegative() {
-        Assert.assertEquals(ResultState.Warning, dataProviderH2.delete(0L).getResultState());
+        Assertions.assertEquals(ResultState.Warning, dataProviderH2.delete(0L).getResultState());
     }
 
     @Test
     public void testUpdateNegative() throws IOException {
-        Assert.assertEquals(ResultState.Warning,
+        Assertions.assertEquals(ResultState.Warning,
                 dataProviderH2.update(new Film("Twilight 5", 2052)).getResultState());
     }
 }
